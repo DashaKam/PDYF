@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Categories;
 
 public class Category {
 

@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Categories;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.example.pdyf.R;
 
 import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {

@@ -1,6 +1,4 @@
-package com.example.pdyf;
-
-import java.util.Date;
+package com.example.pdyf.Goals;
 
 public class Goal {
     private int id;

@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.Report;
 
 import android.content.Intent;
 
@@ -11,6 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pdyf.DateBase.DataBaseHandlerCategory;
+import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
+import com.example.pdyf.TransactionManager.Calculator.ActivityCalculator;
+import com.example.pdyf.TransactionManager.Categories.Category;
+import com.example.pdyf.TransactionManager.Categories.CategoryAdapter;
+import com.example.pdyf.TransactionManager.Transactions.ActivityAddTransaction;
+import com.example.pdyf.TransactionManager.Transactions.ActivityItem;
+import com.example.pdyf.TransactionManager.Transactions.Transaction;
+import com.example.pdyf.Util;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -19,7 +30,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;

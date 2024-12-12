@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Transactions;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,6 +11,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pdyf.TransactionManager.Categories.Category;
+import com.example.pdyf.DateBase.DataBaseHandlerCategory;
+import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
 
 import java.util.ArrayList;
 import java.util.List;

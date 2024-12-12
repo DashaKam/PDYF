@@ -1,6 +1,5 @@
-package com.example.pdyf;
+package com.example.pdyf.DateBase;
 
- import android.annotation.SuppressLint;
  import android.content.ContentValues;
 import android.content.Context;
  import android.database.Cursor;
@@ -8,6 +7,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
  import android.util.Log;
  import android.widget.Toast;
+
+ import com.example.pdyf.Goals.Goal;
+ import com.example.pdyf.Util;
 
  import java.util.ArrayList;
  import java.util.List;

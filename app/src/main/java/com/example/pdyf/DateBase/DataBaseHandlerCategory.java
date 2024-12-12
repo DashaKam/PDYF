@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.DateBase;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.pdyf.TransactionManager.Categories.Category;
+import com.example.pdyf.Util;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Transactions;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pdyf.DateBase.DataBaseHandlerCategory;
 import com.example.pdyf.R;
-import com.example.pdyf.Transaction;
 
 import java.util.List;
 

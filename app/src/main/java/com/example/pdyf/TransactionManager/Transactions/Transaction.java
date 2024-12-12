@@ -1,6 +1,4 @@
-package com.example.pdyf;
-
-import java.util.Date;
+package com.example.pdyf.TransactionManager.Transactions;
 
 public class Transaction {
     private int id;

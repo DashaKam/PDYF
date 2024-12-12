@@ -1,19 +1,18 @@
-package com.example.pdyf;
+package com.example.pdyf.Goals;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.pdyf.DateBase.DataBaseHandlerGoal;
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
 
 import java.util.List;
 

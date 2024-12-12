@@ -14,22 +14,22 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ActivityCalculator"
+            android:name=".TransactionManager.Calculator.ActivityCalculator"
             android:exported="false" />
         <activity
-            android:name=".ActivityAddTransaction"
+            android:name=".TransactionManager.Transactions.ActivityAddTransaction"
             android:exported="false" />
         <activity
-            android:name=".ActivityGoal"
+            android:name=".Goals.ActivityGoal"
             android:exported="false" />
         <activity
-            android:name=".ActivityItem"
+            android:name=".TransactionManager.Transactions.ActivityItem"
             android:exported="false" />
         <activity
-            android:name=".ActivityChart"
+            android:name=".Report.ActivityChart"
             android:exported="false" />
         <activity
-            android:name=".ActivityItemGoal"
+            android:name=".Goals.ActivityItemGoal"
             android:exported="false" />
 
         <activity
