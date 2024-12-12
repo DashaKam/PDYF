@@ -160,5 +160,33 @@ public class DataBaseHandlerCategory extends SQLiteOpenHelper {
             Log.e("Database", "Error in populateInitialData: " + e.getMessage());
         }
     }
+    public void addAmountToCategory(String categoryName, double amount) {
+
+        //  Получаем текущее значение totalSpent для данной категории.
+        String selectQuery = "SELECT " + Util.KEY_CATEGORY_SPEND + " FROM " + Util.TABLE_NAME_CATEGORY +
+                " WHERE name = ?";
+
+        try (SQLiteDatabase db = this.getWritableDatabase();
+             Cursor cursor = db.rawQuery(selectQuery, new String[]{categoryName})) {
+
+            if (cursor.moveToFirst()) {
+                // Текущая сумма в totalSpent для данной категории
+                @SuppressLint("Range") double currentTotalSpent = cursor.getDouble(cursor.getColumnIndex(Util.KEY_CATEGORY_SPEND));
+
+                // Обновляем значение totalSpent
+                double newTotalSpent = currentTotalSpent + amount;
+                String updateQuery = "UPDATE " + Util.TABLE_NAME_CATEGORY +
+                        " SET " +Util.KEY_CATEGORY_SPEND + " = ? WHERE name = ?";
+
+                // Обновляем значение в базе данных
+                db.execSQL(updateQuery, new Object[]{newTotalSpent, categoryName});
+            } else {
+                // Если категория не существует, вы можете обработать это по своему усмотрению
+                Log.e("DB Error", "Category not found: " + categoryName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

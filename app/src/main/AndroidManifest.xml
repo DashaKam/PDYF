@@ -12,14 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PDYF"
         tools:targetApi="31">
-        <activity
-            android:name=".ActivityItemCategory"
-            android:exported="false" />
+
         <activity
             android:name=".ActivityCalculator"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityGoalList"
             android:exported="false" />
         <activity
             android:name=".ActivityAddTransaction"

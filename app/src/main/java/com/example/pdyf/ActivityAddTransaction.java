@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ActivityAddTransaction extends AppCompatActivity {
 
@@ -128,13 +129,21 @@ public class ActivityAddTransaction extends AppCompatActivity {
             Toast.makeText(this, "Введите сумму", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Создаем временную транзакцию
         Transaction tmpTransaction = new Transaction(categoryId, Double.parseDouble(amount), date, selectedType);
         dataBaseHandlerTransaction.addTransaction(tmpTransaction);
-        Log.d("Transaction info: ", "Id " + tmpTransaction.getId() + ", Category: " + tmpTransaction.getCategoryId() + ", amount: " + tmpTransaction.getAmount() + " Date: " + tmpTransaction.getDate() + " Type: " + tmpTransaction.getType());
+
+        Log.d("Transaction info: ", "Id " + tmpTransaction.getId() + ", Category: " + tmpTransaction.getCategoryId() + ", Amount: " + tmpTransaction.getAmount() + " Date: " + tmpTransaction.getDate() + " Type: " + tmpTransaction.getType());
+
+        // Если транзакция является тратой, обновляем сумму totalSpent в категории
+        if (Objects.equals(selectedType, "Spend")) {
+            databaseHandler.addAmountToCategory(selectedCategory, Double.parseDouble(amount));
+            Log.d("Categories: ", selectedCategory + "amount: " + amount);
+        }
 
         clearForm();
         Toast.makeText(this, "Транзакция добавлена", Toast.LENGTH_SHORT).show();
-
     }
 
 

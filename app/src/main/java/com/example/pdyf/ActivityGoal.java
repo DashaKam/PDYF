@@ -18,23 +18,6 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.List;
 
 public class ActivityGoal extends AppCompatActivity {
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_goal);
-//        EditText goalName = findViewById(R.id.goal);
-//        EditText month = findViewById(R.id.month);
-//        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button button = findViewById(R.id.add_goal_button);
-//        String name;
-//        String month2;
-//        button.setOnClickListener (
-//                name = goalName.getText().toString().trim(),
-//                month2 = month.getText().toString().trim()
-//        )
-//    }
-
-
 
     private EditText nameEditText;
     private EditText periodEditText;
