@@ -1,5 +1,7 @@
 package com.example.pdyf;
 
+import android.graphics.Color;
+import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;
 
 public class Util {
@@ -24,7 +26,22 @@ public class Util {
     public  static final String KEY_SUM = "sum";
 
 
+    public static final int[] UNIQUE_COLORS = new int[] {
+            Color.RED,         // 1. Красный
+            Color.GREEN,       // 2. Зеленый
+            Color.BLUE,        // 3. Синий
+            Color.YELLOW,      // 4. Желтый
+            Color.CYAN,        // 5. Циановый
+            Color.MAGENTA,     // 6. Пурпурный
+            Color.DKGRAY,      // 7. Темно-серый
+            Color.LTGRAY,      // 8. Светло-серый
+            Color.parseColor("#FFA500"), // 9. Оранжевый
+            Color.parseColor("#800080"), // 10. Фиолетовый
+            Color.parseColor("#FFC0CB"), // 11. Розовый
+            Color.parseColor("#8B4513"),  // 12. Коричневый
+            Color.parseColor("#8B4513")  // 13. Коричневый
 
+    };
     static Log Log;
 
 }
