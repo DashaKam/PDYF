@@ -79,7 +79,7 @@ public class DataBaseHandlerCategory extends SQLiteOpenHelper {
 
     public List<Category> getAllCategories() {
         List<Category> categoriesList = new ArrayList<>();
-        String selectAllCategories = "SELECT * FROM " + Util.TABLE_NAME_CATEGORY;
+        String selectAllCategories = "SELECT * FROM " + Util.TABLE_NAME_CATEGORY + " ORDER BY " + Util.KEY_CATEGORY_SPEND + " DESC";
         try (SQLiteDatabase db = this.getReadableDatabase();
              Cursor cursor = db.rawQuery(selectAllCategories, null)) {
             if (cursor.moveToFirst()) {
