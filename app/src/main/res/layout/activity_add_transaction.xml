@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".ActivityAddTransaction">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="Добавь новую транзакцию"
+        android:textColor="#008000"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/new_category_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите название категории"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/add_category_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Добавить категорию"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Date"
+        android:textColor="#008000"
+
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Amount"
+        android:textColor="#008000"
+        android:layout_marginTop="20dp"
+
+        />
+
+    <Spinner
+        android:id="@+id/type_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/add_transaction_button"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:onClick="addTransaction"
+        android:text="Добавить тразакцию"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="348dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#006400"
+
+        android:layout_marginTop="60dp"
+
+
+        tools:ignore="OnClick" />
+
+    <Button
+        android:id="@+id/button_to_main"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#006400"
+        android:onClick="toMain"
+        android:text="На главную"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="348dp"
+        tools:ignore="OnClick"
+        android:layout_marginTop="10dp"
+
+
+        />
+    <Button
+        android:id="@+id/button_to_report"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#006400"
+        android:onClick="to_transaction"
+        android:text="Смотреть список транзакций"
+        tools:layout_editor_absoluteX="166dp"
+        tools:layout_editor_absoluteY="348dp"
+        tools:ignore="OnClick"
+        android:layout_marginTop="10dp"
+
+
+        />
+
+</LinearLayout>
