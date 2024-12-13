@@ -24,4 +24,10 @@
         android:layout_height="wrap_content"
         android:text="Сумма цели"
         android:layout_weight="1" />
+    <TextView
+        android:id="@+id/textViewPayment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Ежемесячный платеж"
+        android:layout_weight="1" />
 </LinearLayout>

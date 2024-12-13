@@ -4,8 +4,7 @@ public class Goal {
     private int id;
     private String name;
     private double monthlyPayment;
-   // private Date period;
-    //TODO: пока период просто количество дней!!!
+
     private String period;
 
     private double sum;

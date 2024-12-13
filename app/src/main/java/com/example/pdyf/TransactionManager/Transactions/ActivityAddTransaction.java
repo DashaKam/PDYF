@@ -83,7 +83,7 @@ public class ActivityAddTransaction extends AppCompatActivity {
     private void loadCategories() {
         List<Category> categories = databaseHandler.getAllCategories();
         List<String> categoriesNameList = new ArrayList<>();
-        categoriesNameList.add("Categories");
+        categoriesNameList.add("Категории");
         for (int i = 0; i < categories.size(); i++) {
             categoriesNameList.add(categories.get(i).getName());
         }
@@ -95,9 +95,9 @@ public class ActivityAddTransaction extends AppCompatActivity {
 
     private void loadType() {
         List<String> typeList = new ArrayList<>();
-        typeList.add("Transaction type");
-        typeList.add("Get");
-        typeList.add("Spend");
+        typeList.add("Тип транзакции");
+        typeList.add("Получили");
+        typeList.add("Потратили");
 
 
         CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, typeList);
@@ -143,7 +143,7 @@ public class ActivityAddTransaction extends AppCompatActivity {
         Log.d("Transaction info: ", "Id " + tmpTransaction.getId() + ", Category: " + tmpTransaction.getCategoryId() + ", Amount: " + tmpTransaction.getAmount() + " Date: " + tmpTransaction.getDate() + " Type: " + tmpTransaction.getType());
 
         // Если транзакция является тратой, обновляем сумму totalSpent в категории
-        if (Objects.equals(selectedType, "Spend")) {
+        if (Objects.equals(selectedType, "Потратили")) {
             databaseHandler.addAmountToCategory(selectedCategory, Double.parseDouble(amount));
             Log.d("Categories: ", selectedCategory + "amount: " + amount);
         }

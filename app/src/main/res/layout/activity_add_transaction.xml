@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:hint="Date"
+        android:hint="Дата"
         android:textColor="#008000"
 
         android:layout_marginTop="20dp"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        android:hint="Amount"
+        android:hint="Сумма"
         android:textColor="#008000"
         android:layout_marginTop="20dp"
 
