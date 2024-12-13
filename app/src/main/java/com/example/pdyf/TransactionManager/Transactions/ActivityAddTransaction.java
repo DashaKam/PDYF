@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Transactions;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -12,8 +12,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pdyf.TransactionManager.Categories.Category;
+import com.example.pdyf.DateBase.DataBaseHandlerCategory;
+import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ActivityAddTransaction extends AppCompatActivity {
 
@@ -76,7 +83,7 @@ public class ActivityAddTransaction extends AppCompatActivity {
     private void loadCategories() {
         List<Category> categories = databaseHandler.getAllCategories();
         List<String> categoriesNameList = new ArrayList<>();
-        categoriesNameList.add("Categories");
+        categoriesNameList.add("Категории");
         for (int i = 0; i < categories.size(); i++) {
             categoriesNameList.add(categories.get(i).getName());
         }
@@ -88,9 +95,9 @@ public class ActivityAddTransaction extends AppCompatActivity {
 
     private void loadType() {
         List<String> typeList = new ArrayList<>();
-        typeList.add("Transaction type");
-        typeList.add("Get");
-        typeList.add("Spend");
+        typeList.add("Тип транзакции");
+        typeList.add("Получили");
+        typeList.add("Потратили");
 
 
         CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, typeList);
@@ -128,13 +135,21 @@ public class ActivityAddTransaction extends AppCompatActivity {
             Toast.makeText(this, "Введите сумму", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Создаем временную транзакцию
         Transaction tmpTransaction = new Transaction(categoryId, Double.parseDouble(amount), date, selectedType);
         dataBaseHandlerTransaction.addTransaction(tmpTransaction);
-        Log.d("Transaction info: ", "Id " + tmpTransaction.getId() + ", Category: " + tmpTransaction.getCategoryId() + ", amount: " + tmpTransaction.getAmount() + " Date: " + tmpTransaction.getDate() + " Type: " + tmpTransaction.getType());
+
+        Log.d("Transaction info: ", "Id " + tmpTransaction.getId() + ", Category: " + tmpTransaction.getCategoryId() + ", Amount: " + tmpTransaction.getAmount() + " Date: " + tmpTransaction.getDate() + " Type: " + tmpTransaction.getType());
+
+        // Если транзакция является тратой, обновляем сумму totalSpent в категории
+        if (Objects.equals(selectedType, "Потратили")) {
+            databaseHandler.addAmountToCategory(selectedCategory, Double.parseDouble(amount));
+            Log.d("Categories: ", selectedCategory + "amount: " + amount);
+        }
 
         clearForm();
         Toast.makeText(this, "Транзакция добавлена", Toast.LENGTH_SHORT).show();
-
     }
 
 

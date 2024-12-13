@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Transactions;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,8 +6,10 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
+import com.example.pdyf.R;
 
 import java.util.List;
 

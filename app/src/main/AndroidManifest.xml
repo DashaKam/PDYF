@@ -12,30 +12,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PDYF"
         tools:targetApi="31">
+
         <activity
-            android:name=".ActivityItemCategory"
+            android:name=".TransactionManager.Calculator.ActivityCalculator"
             android:exported="false" />
         <activity
-            android:name=".ActivityCalculator"
+            android:name=".TransactionManager.Transactions.ActivityAddTransaction"
             android:exported="false" />
         <activity
-            android:name=".ActivityGoalList"
+            android:name=".Goals.ActivityGoal"
             android:exported="false" />
         <activity
-            android:name=".ActivityAddTransaction"
+            android:name=".TransactionManager.Transactions.ActivityItem"
             android:exported="false" />
         <activity
-            android:name=".ActivityGoal"
+            android:name=".Report.ActivityChart"
             android:exported="false" />
         <activity
-            android:name=".ActivityItem"
+            android:name=".Goals.ActivityItemGoal"
             android:exported="false" />
-        <activity
-            android:name=".ActivityChart"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityItemGoal"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,12 +1,14 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Calculator;
 
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
 
 public class ActivityCalculator extends AppCompatActivity {
     private EditText editTextResult;

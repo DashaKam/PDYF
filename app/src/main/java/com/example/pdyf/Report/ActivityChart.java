@@ -1,19 +1,27 @@
-package com.example.pdyf;
+package com.example.pdyf.Report;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pdyf.DateBase.DataBaseHandlerCategory;
+import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
+import com.example.pdyf.TransactionManager.Calculator.ActivityCalculator;
+import com.example.pdyf.TransactionManager.Categories.Category;
+import com.example.pdyf.TransactionManager.Categories.CategoryAdapter;
+import com.example.pdyf.TransactionManager.Transactions.ActivityAddTransaction;
+import com.example.pdyf.TransactionManager.Transactions.ActivityItem;
+import com.example.pdyf.TransactionManager.Transactions.Transaction;
+import com.example.pdyf.Util;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -22,7 +30,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +37,7 @@ import java.util.List;
 public class ActivityChart extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CategoryAdapter categoryAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -71,41 +79,41 @@ public class ActivityChart extends AppCompatActivity {
 
 // Создание списка для данных круговой диаграммы
         List<PieEntry> categories = new ArrayList<>();
-        List<Integer> colors = new ArrayList<>(); // Список для цветов
+        List<Integer> colors = new ArrayList<>();
+        List<Category> filteredCategories = new ArrayList<>();
 
         for (int i = 0; i < categoryList.size(); i++) {
-            if (categoryList.get(i).getTotalSpent() > 0) {
-                categories.add(new PieEntry((float) categoryList.get(i).getTotalSpent(), "")); // Название оставлено пустым
-                colors.add(ColorTemplate.MATERIAL_COLORS[i % ColorTemplate.MATERIAL_COLORS.length]); // Сохранить цвет
-            }
+            Category category = categoryList.get(i);
+
+            // Добавление всех категорий, даже если потраченная сумма 0
+            filteredCategories.add(category);
+
+
+            categories.add(new PieEntry((float) category.getTotalSpent(), ""));
+
+            // Назначение уникального цвета
+            int colorIndex = i % Util.UNIQUE_COLORS.length; // Используем остаток для избежания выхода за пределы
+            colors.add(Util.UNIQUE_COLORS[colorIndex]);
+
         }
 
-// Создание отфильтрованного списка категорий
-        List<Category> filteredCategories = new ArrayList<>();
-        for (Category category : categoryList) {
-            if (category.getTotalSpent() > 0) {
-                filteredCategories.add(category);
-            }
-        }
+// Создание адаптера и передача отфильтрованных категорий и их цветов
+        CategoryAdapter categoryAdapter = new CategoryAdapter(filteredCategories, colors);
 
-// Создание адаптера и передача списка цветов
-        categoryAdapter = new CategoryAdapter(filteredCategories, colors);
-
+// Инициализация RecyclerView
         recyclerView.setAdapter(categoryAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Создание PieDataSet
-        PieDataSet pieDataSet = new PieDataSet(categories, null); // Имя набора данных установлено в null
-        pieDataSet.setColors(colors); // Используем список цветов
+// Создание PieDataSet
+        PieDataSet pieDataSet = new PieDataSet(categories, null);
+        pieDataSet.setColors(colors);
 
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
-
-        // Отключение описания и анимация
         pieChart.getDescription().setEnabled(false);
         pieChart.animateY(1000);
 
-        // Установка кастомного отображения значений
+// Установка кастомного отображения значений
         pieData.setValueFormatter(new ValueFormatter() {
             @Override
             public String getPieLabel(float value, PieEntry entry) {
@@ -113,30 +121,40 @@ public class ActivityChart extends AppCompatActivity {
             }
         });
 
-        // Обработчик прокрутки, чтобы отображать сумму
+// Обработчик прокрутки, чтобы отображать сумму
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 if (e instanceof PieEntry) {
                     PieEntry entry = (PieEntry) e;
-                    double totalSpent = entry.getValue();
-                    // Обновить текстовое поле или панель внизу, чтобы отобразить сумму
+                    // Здесь вы можете обновить текстовое поле или панель внизу, чтобы отобразить сумму
                 }
             }
 
             @Override
             public void onNothingSelected() {
-                // Убрать или очистить текст, когда ничего не выбрано
+                // Убираем или очищаем текст, когда ничего не выбрано
             }
         });
 
 // Обновляем диаграмму
         pieChart.invalidate();
-
     }
 
     public void goBack(View v) {
-        Intent intent = new Intent(this, ActivityReport.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void addTransaction(View v){
+        Intent intent = new Intent(this, ActivityAddTransaction.class);
+        startActivity(intent);
+    }
+    public void calculate(View v){
+        Intent intent = new Intent(this, ActivityCalculator.class);
+        startActivity(intent);
+    }
+    public void to_transaction(View v) {
+        Intent intent = new Intent(this, ActivityItem.class);
         startActivity(intent);
     }
 }

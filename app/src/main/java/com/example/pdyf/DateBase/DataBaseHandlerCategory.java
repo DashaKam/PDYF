@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.DateBase;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.pdyf.TransactionManager.Categories.Category;
+import com.example.pdyf.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +82,7 @@ public class DataBaseHandlerCategory extends SQLiteOpenHelper {
 
     public List<Category> getAllCategories() {
         List<Category> categoriesList = new ArrayList<>();
-        String selectAllCategories = "SELECT * FROM " + Util.TABLE_NAME_CATEGORY;
+        String selectAllCategories = "SELECT * FROM " + Util.TABLE_NAME_CATEGORY + " ORDER BY " + Util.KEY_CATEGORY_SPEND + " DESC";
         try (SQLiteDatabase db = this.getReadableDatabase();
              Cursor cursor = db.rawQuery(selectAllCategories, null)) {
             if (cursor.moveToFirst()) {
@@ -158,6 +161,34 @@ public class DataBaseHandlerCategory extends SQLiteOpenHelper {
             }
         } catch (Exception e) {
             Log.e("Database", "Error in populateInitialData: " + e.getMessage());
+        }
+    }
+    public void addAmountToCategory(String categoryName, double amount) {
+
+        //  Получаем текущее значение totalSpent для данной категории.
+        String selectQuery = "SELECT " + Util.KEY_CATEGORY_SPEND + " FROM " + Util.TABLE_NAME_CATEGORY +
+                " WHERE name = ?";
+
+        try (SQLiteDatabase db = this.getWritableDatabase();
+             Cursor cursor = db.rawQuery(selectQuery, new String[]{categoryName})) {
+
+            if (cursor.moveToFirst()) {
+                // Текущая сумма в totalSpent для данной категории
+                @SuppressLint("Range") double currentTotalSpent = cursor.getDouble(cursor.getColumnIndex(Util.KEY_CATEGORY_SPEND));
+
+                // Обновляем значение totalSpent
+                double newTotalSpent = currentTotalSpent + amount;
+                String updateQuery = "UPDATE " + Util.TABLE_NAME_CATEGORY +
+                        " SET " +Util.KEY_CATEGORY_SPEND + " = ? WHERE name = ?";
+
+                // Обновляем значение в базе данных
+                db.execSQL(updateQuery, new Object[]{newTotalSpent, categoryName});
+            } else {
+                // Если категория не существует, вы можете обработать это по своему усмотрению
+                Log.e("DB Error", "Category not found: " + categoryName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

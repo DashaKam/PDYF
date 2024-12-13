@@ -5,58 +5,60 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+
+    android:background="@drawable/money5">
 
     <Button
         android:id="@+id/button"
         android:layout_width="261dp"
         android:layout_height="99dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="284dp"
+        android:backgroundTint="#006400"
         android:onClick="addTransaction"
         android:text="Добавить транзакцию"
         app:layout_constraintStart_toStartOf="@+id/main"
         app:layout_constraintTop_toTopOf="@+id/main"
-        tools:ignore="OnClick"
-        android:backgroundTint="#006400"
-        />
+        tools:ignore="OnClick" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button30"
         android:layout_width="261dp"
         android:layout_height="99dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="#006400"
         android:onClick="goal"
         android:text="Поставить цель"
         app:layout_constraintStart_toStartOf="@+id/main"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        android:backgroundTint="#006400"
-        />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="261dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="80dp"
-        android:onClick="calculate"
-        android:text="Калькулятор"
-        app:layout_constraintStart_toStartOf="@+id/main"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        android:backgroundTint="#006400"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="261dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="237dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="220dp"
+        android:backgroundTint="#006400"
         android:onClick="onClick"
         android:text="Посмотреть диаграмму по категориям"
         app:layout_constraintStart_toStartOf="@+id/main"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        android:backgroundTint="#006400"
-        />
+
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="264dp"
+        android:layout_height="216dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Приложение для управления финансами"
+        android:textColor="#006400"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="29dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

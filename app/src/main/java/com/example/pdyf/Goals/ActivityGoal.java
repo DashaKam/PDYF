@@ -1,40 +1,22 @@
-package com.example.pdyf;
+package com.example.pdyf.Goals;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.pdyf.DateBase.DataBaseHandlerGoal;
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
 
 import java.util.List;
 
 public class ActivityGoal extends AppCompatActivity {
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_goal);
-//        EditText goalName = findViewById(R.id.goal);
-//        EditText month = findViewById(R.id.month);
-//        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button button = findViewById(R.id.add_goal_button);
-//        String name;
-//        String month2;
-//        button.setOnClickListener (
-//                name = goalName.getText().toString().trim(),
-//                month2 = month.getText().toString().trim()
-//        )
-//    }
-
-
 
     private EditText nameEditText;
     private EditText periodEditText;
@@ -74,19 +56,36 @@ public class ActivityGoal extends AppCompatActivity {
         }
 
         // Вставка данных в базу данных
-            Goal tmpGoal = new Goal(name,period, Double.parseDouble(sum));
-            tmpGoal.setMonthlyPayment(tmpGoal.countMonthPayment(Double.parseDouble(sum), period));
-            databaseHelper.addGoal(tmpGoal, this);
+        Goal tmpGoal = new Goal(name, period, Double.parseDouble(sum));
+        tmpGoal.setMonthlyPayment(tmpGoal.countMonthPayment(Double.parseDouble(sum), period));
+        int addingResult = databaseHelper.addGoal(tmpGoal, this);
 
         Log.d("Goals info: ", "Id " + tmpGoal.getId() + ", Name: " + tmpGoal.getName() + ", payment: " + tmpGoal.getMonthlyPayment() + " Date: " + tmpGoal.getPeriod() + " Sum: " + tmpGoal.getSum());
 
-            List<Goal> goalList = databaseHelper.getAllGoals();
-            // вывод бд в консоль
-            for (Goal goal : goalList) {
-                Log.d("Goals info: ", "Id " + goal.getId() + ", Name: " + goal.getName() + ", payment: " + goal.getMonthlyPayment() + " Date: " + goal.getPeriod() + " Sum: " + goal.getSum());
-            }
+        List<Goal> goalList = databaseHelper.getAllGoals();
+        // вывод бд в консоль
+        for (Goal goal : goalList) {
+            Log.d("Goals info: ", "Id " + goal.getId() + ", Name: " + goal.getName() + ", payment: " + goal.getMonthlyPayment() + " Date: " + goal.getPeriod() + " Sum: " + goal.getSum());
+        }
+
+        if (addingResult == 0) {
+            clearForm();
+            Toast.makeText(this, "Цель добавлена", Toast.LENGTH_SHORT).show();
+        }else {
+            clearName();
+        }
+    }
 
 
+    private void clearForm() {
+        // Очищаем EditText
+        nameEditText.setText("");
+        periodEditText.setText("");
+        sumEditText.setText("");
+    }
+    private void clearName() {
+        // Очищаем EditText
+        nameEditText.setText("");
     }
 
     public void toGoals(View v) {

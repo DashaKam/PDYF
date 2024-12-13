@@ -1,13 +1,10 @@
-package com.example.pdyf;
-
-import java.util.Date;
+package com.example.pdyf.Goals;
 
 public class Goal {
     private int id;
     private String name;
     private double monthlyPayment;
-   // private Date period;
-    //TODO: пока период просто количество дней!!!
+
     private String period;
 
     private double sum;

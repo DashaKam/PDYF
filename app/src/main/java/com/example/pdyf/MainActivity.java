@@ -7,6 +7,13 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pdyf.DateBase.DataBaseHandlerCategory;
+import com.example.pdyf.Goals.ActivityGoal;
+import com.example.pdyf.Report.ActivityChart;
+import com.example.pdyf.TransactionManager.Calculator.ActivityCalculator;
+import com.example.pdyf.TransactionManager.Categories.Category;
+import com.example.pdyf.TransactionManager.Transactions.ActivityAddTransaction;
+
 import java.util.List;
 
 

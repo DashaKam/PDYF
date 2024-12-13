@@ -1,4 +1,4 @@
-package com.example.pdyf;
+package com.example.pdyf.Goals;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pdyf.R;
 
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolder> {
         holder.textViewGoal.setText(String.valueOf(goal.getName()));
         holder.textViewPeriod.setText(goal.getPeriod());
         holder.textViewSum.setText(String.valueOf(goal.getSum()));
+        holder.textViewPayment.setText(String.valueOf(goal.getMonthlyPayment()));
     }
 
     @Override
@@ -41,13 +44,15 @@ public class GoalAdapter extends RecyclerView.Adapter<GoalAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewGoal, textViewPeriod, textViewSum;
+        public TextView textViewGoal, textViewPeriod, textViewSum, textViewPayment;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textViewGoal = itemView.findViewById(R.id.textViewGoal);
             textViewPeriod = itemView.findViewById(R.id.textViewPeriod);
             textViewSum = itemView.findViewById(R.id.textViewSum);
+            textViewPayment = itemView.findViewById(R.id.textViewPayment);
+
         }
     }
 }

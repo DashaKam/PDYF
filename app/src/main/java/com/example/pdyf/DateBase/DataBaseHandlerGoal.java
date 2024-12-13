@@ -1,6 +1,5 @@
-package com.example.pdyf;
+package com.example.pdyf.DateBase;
 
- import android.annotation.SuppressLint;
  import android.content.ContentValues;
 import android.content.Context;
  import android.database.Cursor;
@@ -8,6 +7,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteOpenHelper;
  import android.util.Log;
  import android.widget.Toast;
+
+ import com.example.pdyf.Goals.Goal;
+ import com.example.pdyf.Util;
 
  import java.util.ArrayList;
  import java.util.List;
@@ -31,13 +33,13 @@ public class DataBaseHandlerGoal extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addGoal(Goal goal, Context context) {
+    public int addGoal(Goal goal, Context context) {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             // Проверяем, существует ли цель с таким именем
             if (isGoalExists(goal.getName(), db)) {
                 Log.d("DataBaseHandlerGoal", "Цель с таким именем уже существует: " + goal.getName());
                 Toast.makeText(context, "Цель с таким именем уже существует!", Toast.LENGTH_SHORT).show();
-                return;
+                return 1;
             }
 
             ContentValues contentValues = new ContentValues();
@@ -49,6 +51,7 @@ public class DataBaseHandlerGoal extends SQLiteOpenHelper {
         } catch (Exception e) {
             e.printStackTrace(); // Обработка исключений
         }
+        return 0;
     }
 
     private boolean isGoalExists(String goalName, SQLiteDatabase db) {
