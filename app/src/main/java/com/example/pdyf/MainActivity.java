@@ -13,6 +13,7 @@ import com.example.pdyf.Report.ActivityChart;
 import com.example.pdyf.TransactionManager.Calculator.ActivityCalculator;
 import com.example.pdyf.TransactionManager.Categories.Category;
 import com.example.pdyf.TransactionManager.Transactions.ActivityAddTransaction;
+import com.example.pdyf.TransactionManager.Transactions.ActivitySearch;
 
 import java.util.List;
 

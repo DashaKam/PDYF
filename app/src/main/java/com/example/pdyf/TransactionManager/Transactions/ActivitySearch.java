@@ -1,6 +1,7 @@
-package com.example.pdyf;
+package com.example.pdyf.TransactionManager.Transactions;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,16 +12,12 @@ import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
-import com.example.pdyf.TransactionManager.Transactions.CustomSpinnerAdapter;
-import com.example.pdyf.TransactionManager.Transactions.Transaction;
-import com.example.pdyf.TransactionManager.Transactions.TransactionAdapter;
+import com.example.pdyf.MainActivity;
+import com.example.pdyf.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +69,7 @@ public class ActivitySearch extends AppCompatActivity {
                     if (!amount.isEmpty()) {
                         Log.d("Search: ", "Try load");
                         loadTransactions(amount, selectedType);
+                        clearForm();
                         Log.d("Search: ", "In listener");
                     } else {
                         Log.e("Search", "Amount is empty");
@@ -103,7 +101,24 @@ public class ActivitySearch extends AppCompatActivity {
             Log.e("Search", "No transactions found or transactions list is null");
         }
     }
+    private void clearForm() {
+        // Очищаем EditText
+        amountEditText.setText("");
 
+        // Сбрасываем Spinner для типа
+        typeSpinner.setSelection(0);
+
+        // Обнуляем выбранные значения
+        selectedType = null;
+    }
+    public void toTransactionList(View v) {
+        Intent intent = new Intent(this, ActivityItem.class);
+        startActivity(intent);
+    }
+    public void toMain(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
 }
 
