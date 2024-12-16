@@ -27,7 +27,7 @@
         android:layout_width="261dp"
         android:layout_height="99dp"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#006400"
         android:onClick="goal"
         android:text="Поставить цель"
@@ -39,10 +39,24 @@
         android:layout_width="237dp"
         android:layout_height="92dp"
         android:layout_marginStart="172dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="128dp"
         android:backgroundTint="#006400"
         android:onClick="onClick"
         android:text="Посмотреть диаграмму по категориям"
+        app:layout_constraintStart_toStartOf="@+id/main"
+
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="237dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="240dp"
+        android:backgroundTint="#006400"
+        android:onClick="search"
+        android:text="Поиск по транзакции"
         app:layout_constraintStart_toStartOf="@+id/main"
 
         app:layout_constraintTop_toBottomOf="@+id/button"

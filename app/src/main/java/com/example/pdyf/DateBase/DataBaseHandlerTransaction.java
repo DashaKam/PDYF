@@ -1,5 +1,6 @@
 package com.example.pdyf.DateBase;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -103,5 +104,33 @@ public class DataBaseHandlerTransaction extends SQLiteOpenHelper {
 
         // Возвращаем разницу между доходами и расходами
         return income - expenses;
+    }
+    @SuppressLint("Range")
+    public List<Transaction> getTransactionsByAmountAndType(String amount, String type) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Transaction> transactionsList = new ArrayList<>();
+
+        String selection = Util.KEY_AMOUNT + " = ? AND " + Util.KEY_TYPE + " = ?";
+        String[] selectionArgs = {amount, type};
+
+        Cursor cursor = db.query(Util.TABLE_NAME, null, selection, selectionArgs, null, null, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Transaction transaction = new Transaction();
+                    transaction.setId(cursor.getInt(0));
+                    transaction.setCategoryId(cursor.getInt(1));
+                    transaction.setAmount(cursor.getDouble(2));
+                    transaction.setDate(cursor.getString(3));
+                    transaction.setType(cursor.getString(4));
+
+                    transactionsList.add(transaction);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        return transactionsList;
     }
  }
