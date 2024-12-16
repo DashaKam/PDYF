@@ -18,7 +18,28 @@
         android:text="На главную"
         android:backgroundTint="#006400"
         android:onClick="toMain" />
+    <EditText
+        android:id="@+id/editTextSearchAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Введите сумму поиска"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1" />
 
+    <Spinner
+        android:id="@+id/spinnerSearchType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:prompt="@string/select_transaction_type"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поиск"
+        android:onClick="searchTransactions" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
