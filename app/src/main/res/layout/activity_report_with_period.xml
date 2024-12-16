@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Report.ActivityReportWithPeriod">
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Выберите период для отчета"
+        android:textColor="#006400"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="27dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/start_date"
@@ -31,19 +45,6 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="312dp" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Выберите период для отчета"
-        android:textColor="#006400"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="27dp"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonLook"
@@ -52,7 +53,8 @@
         android:text="Смотреть"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="411dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:backgroundTint="#006400"/>
 
     <Button
         android:id="@+id/button16"
@@ -61,7 +63,14 @@
         android:text="Назад"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="464dp"
+        android:backgroundTint="#006400"
+        android:onClick="toAddTransaction"
         tools:ignore="MissingConstraints" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

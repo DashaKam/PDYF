@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
 import com.example.pdyf.MainActivity;
 import com.example.pdyf.R;
+import com.example.pdyf.Report.ActivityReportWithPeriod;
 import com.example.pdyf.TransactionManager.Calculator.ActivityCalculator;
 
 import java.util.ArrayList;
@@ -63,6 +64,10 @@ public class ActivityItem extends AppCompatActivity {
     }
     public void toMain(View v){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void to_report(View v) {
+        Intent intent = new Intent(this, ActivityReportWithPeriod.class);
         startActivity(intent);
     }
 }

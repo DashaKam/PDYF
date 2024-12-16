@@ -157,4 +157,8 @@ public class ActivityChart extends AppCompatActivity {
         Intent intent = new Intent(this, ActivityItem.class);
         startActivity(intent);
     }
+    public void to_report_with_period(View v) {
+        Intent intent = new Intent(this, ActivityItem.class);
+        startActivity(intent);
+    }
 }

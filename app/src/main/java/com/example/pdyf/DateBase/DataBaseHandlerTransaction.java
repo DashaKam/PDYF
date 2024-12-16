@@ -133,4 +133,32 @@ public class DataBaseHandlerTransaction extends SQLiteOpenHelper {
         cursor.close(); // Закрываем курсор после использования
         return transactionsList;
     }
+    public List<Transaction> getTransactionsByDate (String startDate, String endDate){
+            List<Transaction> transactionsList = new ArrayList<>();
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            // SQL-запрос для получения транзакций
+            String query = "SELECT * FROM transactions WHERE date BETWEEN ? AND ?";
+            Cursor cursor = db.rawQuery(query, new String[]{startDate, endDate});
+
+            // Проверяем, есть ли результаты
+        if (cursor.moveToFirst()) {
+            do {
+                Transaction transaction = new Transaction();
+                transaction.setId(Integer.parseInt(cursor.getString(0)));
+                transaction.setCategoryId(Integer.parseInt(cursor.getString(1)));
+                transaction.setAmount(Double.parseDouble(cursor.getString(2)));
+                transaction.setDate(cursor.getString(3));
+                transaction.setType(cursor.getString(4));
+
+                transactionsList.add(transaction);
+            } while (cursor.moveToNext());
+            }
+            cursor.close();
+            db.close();
+
+            return transactionsList; // Возвращаем список транзакций
+        }
+
+
  }
