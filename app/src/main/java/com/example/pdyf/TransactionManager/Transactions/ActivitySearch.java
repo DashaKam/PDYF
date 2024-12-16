@@ -101,6 +101,7 @@ public class ActivitySearch extends AppCompatActivity {
             Log.e("Search", "No transactions found or transactions list is null");
         }
     }
+
     private void clearForm() {
         // Очищаем EditText
         amountEditText.setText("");
@@ -111,10 +112,12 @@ public class ActivitySearch extends AppCompatActivity {
         // Обнуляем выбранные значения
         selectedType = null;
     }
+
     public void toTransactionList(View v) {
         Intent intent = new Intent(this, ActivityItem.class);
         startActivity(intent);
     }
+
     public void toMain(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

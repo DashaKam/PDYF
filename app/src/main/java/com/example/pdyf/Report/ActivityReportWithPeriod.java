@@ -55,11 +55,15 @@ public class ActivityReportWithPeriod extends AppCompatActivity {
                 // Получаем даты
                 String startDate = startDateEditText.getText().toString();
                 String endDate = endDateEditText.getText().toString();
-
                 if (!startDate.isEmpty() && !endDate.isEmpty()) {
-                    loadTransactions(startDate, endDate);
-                    clearForm();
+                    if (!isValidDate(startDate)){ Toast.makeText(v.getContext(), "Формат даты начала отчета некорректен!", Toast.LENGTH_SHORT).show(); return;}
+                    if (!isValidDate(endDate)){ Toast.makeText(v.getContext(), "Формат даты окончания отчета некорректен!", Toast.LENGTH_SHORT).show(); return;}
+                    if(isValidDate(startDate) && isValidDate(endDate)) {
+                        loadTransactions(startDate, endDate);
+                        clearForm();
+                    }
                 } else {
+                    Toast.makeText(v.getContext(), "Пожалуйста, введите даты", Toast.LENGTH_SHORT).show();
                     Log.e("Report", "Amount is empty");
                 }
             }
@@ -87,6 +91,9 @@ public class ActivityReportWithPeriod extends AppCompatActivity {
     public void toAddTransaction(View v) {
         Intent intent = new Intent(this, ActivityAddTransaction.class);
         startActivity(intent);
+    }
+    private static boolean isValidDate(String date) {
+        return date.matches("\\d{4}-\\d{2}-\\d{2}");
     }
 
 
