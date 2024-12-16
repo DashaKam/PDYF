@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
@@ -39,6 +40,10 @@ public class ActivitySearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_search);
+
+        recyclerView = findViewById(R.id.recyclerView_2);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         typeSpinner = findViewById(R.id.type_spinner_2);
         amountEditText = findViewById(R.id.amount_2);
         buttonSearch = findViewById(R.id.buttonSearch);
@@ -63,9 +68,14 @@ public class ActivitySearch extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("Search: ", "Check if");
                 if (amountEditText != null && selectedType != null) {
-                    Log.d("Search: ", "Try load");
-                    loadTransactions(amountEditText.toString(), selectedType);
-                    Log.d("Search: ", "In listener");
+                    String amount = amountEditText.getText().toString();
+                    if (!amount.isEmpty()) {
+                        Log.d("Search: ", "Try load");
+                        loadTransactions(amount, selectedType);
+                        Log.d("Search: ", "In listener");
+                    } else {
+                        Log.e("Search", "Amount is empty");
+                    }
                 }
             }
         });
@@ -85,12 +95,12 @@ public class ActivitySearch extends AppCompatActivity {
     }
 
     private void loadTransactions(String amount, String type) {
-        List<Transaction> transactions = databaseHandlerTransaction.getTransactionsByAmountAndType(amount, type);
+        List<Transaction> transactions = databaseHandlerTransaction.getTransactionsByAmountAndType(Double.parseDouble(amount), type);
         if (transactions != null) {
             adapter = new TransactionAdapter(transactions);
             recyclerView.setAdapter(adapter);
         } else {
-            Log.e("ActivityItem", "No transactions found or transactions list is null");
+            Log.e("Search", "No transactions found or transactions list is null");
         }
     }
 

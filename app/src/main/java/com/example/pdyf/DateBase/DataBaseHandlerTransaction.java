@@ -63,7 +63,7 @@ public class DataBaseHandlerTransaction extends SQLiteOpenHelper {
     public List<Transaction> getAllTransactions() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Transaction> transactionsList = new ArrayList<>();
-        // Измените запрос, добавив сортировку по дате
+        // сортировкa по дате
         String selectAllTransaction = "SELECT * FROM " + Util.TABLE_NAME + " ORDER BY " + Util.KEY_DATE + " DESC";
         Cursor cursor = db.rawQuery(selectAllTransaction, null);
         if (cursor.moveToFirst()) {
@@ -105,32 +105,32 @@ public class DataBaseHandlerTransaction extends SQLiteOpenHelper {
         // Возвращаем разницу между доходами и расходами
         return income - expenses;
     }
-    @SuppressLint("Range")
-    public List<Transaction> getTransactionsByAmountAndType(String amount, String type) {
+    public List<Transaction> getTransactionsByAmountAndType(double amount, String type) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Transaction> transactionsList = new ArrayList<>();
 
-        String selection = Util.KEY_AMOUNT + " = ? AND " + Util.KEY_TYPE + " = ?";
-        String[] selectionArgs = {amount, type};
+        // Создаем SQL-запрос с параметрами для фильтрации по сумме и типу
+        String selectTransactions = "SELECT * FROM " + Util.TABLE_NAME +
+                " WHERE " + Util.KEY_AMOUNT + " = ? AND " + Util.KEY_TYPE + " = ? " +
+                "ORDER BY " + Util.KEY_DATE + " DESC";
 
-        Cursor cursor = db.query(Util.TABLE_NAME, null, selection, selectionArgs, null, null, null);
+        // Параметры для запроса
+        String[] selectionArgs = new String[]{String.valueOf(amount), type};
 
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    Transaction transaction = new Transaction();
-                    transaction.setId(cursor.getInt(0));
-                    transaction.setCategoryId(cursor.getInt(1));
-                    transaction.setAmount(cursor.getDouble(2));
-                    transaction.setDate(cursor.getString(3));
-                    transaction.setType(cursor.getString(4));
+        Cursor cursor = db.rawQuery(selectTransactions, selectionArgs);
+        if (cursor.moveToFirst()) {
+            do {
+                Transaction transaction = new Transaction();
+                transaction.setId(Integer.parseInt(cursor.getString(0)));
+                transaction.setCategoryId(Integer.parseInt(cursor.getString(1)));
+                transaction.setAmount(Double.parseDouble(cursor.getString(2)));
+                transaction.setDate(cursor.getString(3));
+                transaction.setType(cursor.getString(4));
 
-                    transactionsList.add(transaction);
-                } while (cursor.moveToNext());
-            }
-            cursor.close();
+                transactionsList.add(transaction);
+            } while (cursor.moveToNext());
         }
-
+        cursor.close(); // Закрываем курсор после использования
         return transactionsList;
     }
  }
