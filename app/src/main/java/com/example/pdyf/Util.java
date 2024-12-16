@@ -5,7 +5,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;
 
 public class Util {
-    public   static final int VERSION = 12;
+    public   static final int VERSION = 13;
     public  static final String DATABASE_NAME = "transactionsBD";
     public  static final String DATABASE_CATEGORY = "categoriesBD";
     public  static final String DATABASE_GOAL = "goalsBD";

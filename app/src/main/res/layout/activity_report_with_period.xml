@@ -64,7 +64,7 @@
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="464dp"
         android:backgroundTint="#006400"
-        android:onClick="toAddTransaction"
+        android:onClick="toListTransaction"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView

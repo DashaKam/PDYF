@@ -88,8 +88,8 @@ public class ActivityReportWithPeriod extends AppCompatActivity {
 
     }
 
-    public void toAddTransaction(View v) {
-        Intent intent = new Intent(this, ActivityAddTransaction.class);
+    public void toListTransaction(View v) {
+        Intent intent = new Intent(this, ActivityItem.class);
         startActivity(intent);
     }
     private static boolean isValidDate(String date) {
