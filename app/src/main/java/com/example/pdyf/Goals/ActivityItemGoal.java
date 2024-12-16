@@ -1,15 +1,19 @@
 package com.example.pdyf.Goals;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pdyf.DateBase.DataBaseHandlerGoal;
+import com.example.pdyf.MainActivity;
 import com.example.pdyf.R;
+import com.example.pdyf.TransactionManager.Transactions.ActivityAddTransaction;
 
 import java.util.List;
 
@@ -43,6 +47,15 @@ public class ActivityItemGoal extends AppCompatActivity {
         } else {
             Log.e("ActivityItemGoal", "No goals found or goal list is null");
         }
+    }
+
+    public void toAddGoal(View v){
+        Intent intent = new Intent(this, ActivityGoal.class);
+        startActivity(intent);
+    }
+    public void toMain(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
 

@@ -46,10 +46,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="none"
+        android:focusable="false"
         android:hint="Дата"
         android:textColor="#008000"
-
         android:layout_marginTop="20dp"
         />
     <EditText
@@ -61,7 +61,6 @@
         android:hint="Сумма"
         android:textColor="#008000"
         android:layout_marginTop="20dp"
-
         />
 
     <Spinner

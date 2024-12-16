@@ -1,6 +1,7 @@
 package com.example.pdyf.TransactionManager.Transactions;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,12 +19,14 @@ import com.example.pdyf.DateBase.DataBaseHandlerTransaction;
 import com.example.pdyf.MainActivity;
 import com.example.pdyf.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class ActivityAddTransaction extends AppCompatActivity {
-
     private Spinner categorySpinner;
     private Spinner typeSpinner;
     private DataBaseHandlerCategory databaseHandler;
@@ -33,8 +36,6 @@ public class ActivityAddTransaction extends AppCompatActivity {
     private EditText amountEditText;
     private String selectedCategory;
     private String selectedType;
-
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -50,12 +51,17 @@ public class ActivityAddTransaction extends AppCompatActivity {
         amountEditText = findViewById(R.id.amount);
 
         dataBaseHandlerTransaction = new DataBaseHandlerTransaction(this);
+        //dataBaseHandlerTransaction.onUpgrade(dataBaseHandlerTransaction.getWritableDatabase(), 0, 1);
+
         loadCategories();
         loadType();
+
+        dateEditText.setOnClickListener(v -> showDatePickerDialog());
+
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Получяем значение
+                // Получаем значение
                 selectedCategory = parent.getItemAtPosition(position).toString();
             }
 
@@ -67,7 +73,7 @@ public class ActivityAddTransaction extends AppCompatActivity {
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Получяем значение
+                // Получаем значение
                 selectedType = parent.getItemAtPosition(position).toString();
                 Log.d("Type", selectedType);
             }
@@ -92,16 +98,13 @@ public class ActivityAddTransaction extends AppCompatActivity {
         categorySpinner.setAdapter(adapter);
     }
 
-
     private void loadType() {
         List<String> typeList = new ArrayList<>();
         typeList.add("Тип транзакции");
         typeList.add("Получили");
         typeList.add("Потратили");
 
-
         CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this, typeList);
-
 
         typeSpinner.setAdapter(adapter);
 
@@ -111,6 +114,32 @@ public class ActivityAddTransaction extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    private void showDatePickerDialog() {
+        // Получаем текущую дату
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Создаем и показываем DatePickerDialog
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    // Форматируем выбранную дату
+                    Calendar selectedDate = Calendar.getInstance();
+                    selectedDate.set(selectedYear, selectedMonth, selectedDay);
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                    dateEditText.setText(formatter.format(selectedDate.getTime()));
+                },
+                year,
+                month,
+                day
+        );
+
+        datePickerDialog.show();
+    }
+
     public void addTransaction(View v) {
         String date = dateEditText.getText().toString().trim();
         String amount = amountEditText.getText().toString().trim();
@@ -152,8 +181,6 @@ public class ActivityAddTransaction extends AppCompatActivity {
         Toast.makeText(this, "Транзакция добавлена", Toast.LENGTH_SHORT).show();
     }
 
-
-
     private void clearForm() {
         // Очищаем EditText
         dateEditText.setText("");
@@ -169,10 +196,9 @@ public class ActivityAddTransaction extends AppCompatActivity {
         selectedCategory = null;
         selectedType = null;
     }
+
     public void to_transaction(View v) {
         Intent intent = new Intent(this, ActivityItem.class);
         startActivity(intent);
     }
-
-
 }

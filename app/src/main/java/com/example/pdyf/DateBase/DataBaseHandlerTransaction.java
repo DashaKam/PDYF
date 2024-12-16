@@ -23,6 +23,9 @@ public class DataBaseHandlerTransaction extends SQLiteOpenHelper {
                 + Util.KEY_CATEGORY + " TEXT, " + Util.KEY_AMOUNT + " TEXT, " + Util.KEY_DATE + " TEXT, " + Util.KEY_TYPE + " TEXT)";
         //TODO: МБ ГДЕ ДАТА НАДО ТИП ПОМЕНЯТЬ
         db.execSQL(CREATE_TRANSACTION_TABLE);
+        // Добавляем индекс на поле даты
+        String CREATE_INDEX_DATE = "CREATE INDEX idx_date ON " + Util.TABLE_NAME + " (" + Util.KEY_DATE + ")";
+        db.execSQL(CREATE_INDEX_DATE);
     }
 
     @Override
@@ -56,13 +59,14 @@ public class DataBaseHandlerTransaction extends SQLiteOpenHelper {
         return new Transaction(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
                 Double.parseDouble(cursor.getString(2)), cursor.getString(3), cursor.getString(4));
     }
-    public List<Transaction> getAllTransactions(){
+    public List<Transaction> getAllTransactions() {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Transaction> transactionsList = new ArrayList<>();
-        String selectAllTransaction = "Select * from " + Util.TABLE_NAME;
+        // Измените запрос, добавив сортировку по дате
+        String selectAllTransaction = "SELECT * FROM " + Util.TABLE_NAME + " ORDER BY " + Util.KEY_DATE + " DESC";
         Cursor cursor = db.rawQuery(selectAllTransaction, null);
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 Transaction transaction = new Transaction();
                 transaction.setId(Integer.parseInt(cursor.getString(0)));
                 transaction.setCategoryId(Integer.parseInt(cursor.getString(1)));
@@ -71,8 +75,9 @@ public class DataBaseHandlerTransaction extends SQLiteOpenHelper {
                 transaction.setType(cursor.getString(4));
 
                 transactionsList.add(transaction);
-            }while (cursor.moveToNext()); // Пока есть следующий элеент
+            } while (cursor.moveToNext());
         }
+        cursor.close(); // Закрываем курсор после использования
         return transactionsList;
     }
     public double calculateIncome() {

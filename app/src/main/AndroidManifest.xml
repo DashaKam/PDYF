@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PDYF"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Report.ActivityReportWithPeriod"
+            android:exported="false" />
         <activity
             android:name=".TransactionManager.Calculator.ActivityCalculator"
             android:exported="false" />
@@ -31,7 +33,6 @@
         <activity
             android:name=".Goals.ActivityItemGoal"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

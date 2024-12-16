@@ -1,5 +1,8 @@
 package com.example.pdyf.Goals;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Goal {
     private int id;
     private String name;
@@ -76,6 +79,7 @@ public class Goal {
         return this.sum/Integer.parseInt(this.period);
     }
     public double countMonthPayment(double sum, String period){
-        return sum/Integer.parseInt(period);
+        return BigDecimal.valueOf(sum).divide(BigDecimal.valueOf(Integer.parseInt(period)), 3, RoundingMode.UP).doubleValue();
+
     }
 }
