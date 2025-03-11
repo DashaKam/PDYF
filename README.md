@@ -1,7 +1,7 @@
 # Local Finance Tracker
 
 ## Overview
-Local Finance Tracker is a simple application designed for managing personal finances. Developed as part of the course "Object-Oriented Programming" in my third year at the Faculty of Information Technology (FIT) at Novosibirsk State University, this is my first Android application.
+Local Finance Tracker is a simple application designed for managing personal finances. Developed as part of the course "ОАИД" in my third year at the Faculty of Information Technology (FIT) at Novosibirsk State University, this is my first Android application.
 
 ## Features
 - **Add Expenses**: Easily record your daily expenses with a user-friendly interface.
